@@ -21,9 +21,14 @@ pipeline {
         }
         
         stage('package') {
-            agent {label 'slave1'}
+            //agent {label 'slave1'}
+            agent any
             steps {
-                sh 'mvn package'
+                sshagent(['build-server-key']) {
+                    sh 'mvn package'
+    
+                }
+                
             }
         }
         
