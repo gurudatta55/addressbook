@@ -23,6 +23,7 @@ pipeline {
         stage('deploy') {
             steps {
                 echo 'deploy the code'
+                echo 'extra step added to test'
             }
         }
         
