@@ -1,6 +1,5 @@
 pipeline {
     agent none
-
     stages {
         stage('compile') {
             agent any
@@ -14,10 +13,15 @@ pipeline {
             steps {
                 sh 'mvn test'
             }
+            post {
+                always {
+                    junit 'target/surefire-report/*.xml'
+                }
+            }
         }
         
-        stage('packahe') {
-            agent any
+        stage('package') {
+            agent {label 'slave1'}
             steps {
                 sh 'mvn package'
             }
@@ -27,7 +31,6 @@ pipeline {
             agent any
             steps {
                 echo 'deploy the code'
-                echo 'extra step added to test'
             }
         }
         
