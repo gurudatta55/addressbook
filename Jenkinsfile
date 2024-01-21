@@ -1,26 +1,30 @@
 pipeline {
-    agent any
+    agent none
 
     stages {
         stage('compile') {
+            agent any
             steps {
-                echo 'compile the code'
+                sh 'mvn compile'
             }
         }
         
         stage('unit test') {
+            agent any
             steps {
-                echo 'test the code'
+                sh 'mvn test'
             }
         }
         
-        stage('build') {
+        stage('packahe') {
+            agent any
             steps {
-                echo 'buld the code'
+                sh 'mvn package'
             }
         }
         
         stage('deploy') {
+            agent any
             steps {
                 echo 'deploy the code'
                 echo 'extra step added to test'
