@@ -28,7 +28,7 @@ pipeline {
                 sshagent(['build-server-key']) {
                 
             sh "scp -o StrictHostKeyChecking=no server-script.sh ec2-user@172.31.5.43:/home/ec2-user"
-            sh "ssh -o StrictHostKeyChecking=no server-script.sh ec2-user@172.31.5.43 ~ec2-user/server-script.sh"
+            sh "ssh -o StrictHostKeyChecking=no server-script.sh ec2-user@172.31.5.43:/home/ec2-user/server-script.sh"
     
                 }
                 
