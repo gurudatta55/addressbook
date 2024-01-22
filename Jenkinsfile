@@ -34,7 +34,7 @@ pipeline {
             steps {
                 sshagent(['build-server-key']) {
 
-                withCredentials([usernamePassword(credentialsId: 'docker_credentials', passwordVariable: 'password', usernameVariable: 'username')])
+                withCredentials([usernamePassword(credentialsId: 'docker_credentials', passwordVariable: 'password', usernameVariable: 'username')]){
     
                 
                 sh "scp -o StrictHostKeyChecking=no server-script.sh ${DEV_SERVER_IP}:/home/ec2-user"
@@ -43,7 +43,7 @@ pipeline {
                 sh "ssh ${DEV_SERVER_IP} sudo docker build -t  ${IMAGE_NAME} /home/ec2-user/addressbook"
                     sh "ssh ${DEV_SERVER_IP} sudo docker login -u $username -p $password"
                     sh "ssh ${DEV_SERVER_IP} sudo docker push ${IMAGE_NAME}"
-    
+                }
                 }
                 
             }
