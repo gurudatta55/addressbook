@@ -22,11 +22,11 @@ pipeline {
                 sh 'mvn test'
             }
             
-            post{
-                always{
-                    junit 'targrt/surefire-reports/*.xml'
-                }
-            }
+            //post{
+                //always{
+                   // junit 'targrt/surefire-reports/*.xml'
+               // }
+            //}
         }
         
         stage('package') {
