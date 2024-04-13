@@ -35,14 +35,14 @@ pipeline {
             steps {
                 
                 sshagent(['build-server-key']) {
-                withCredentials([usernamePassword(credentialsId: 'docker_credentials', passwordVariable: 'docker-password', usernameVariable: 'docker-username')]) {
+                withCredentials([usernamePassword(credentialsId: 'docker_credentials', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
                 
 
                 sh 'mvn compile'
                 sh "scp -o StrictHostKeyChecking=no server-script.sh ${DEV_SERVER_IP}:/home/ec2-user"
                 sh "ssh -o StrictHostKeyChecking=no ${DEV_SERVER_IP} bash /home/ec2-user/server-script.sh"
                 sh "ssh ${DEV_SERVER_IP} sudo docker build -t ${IMAGE_NAME} /home/ec2-user/addressbook"
-                sh "ssh ${DEV_SERVER_IP} sudo docker login -u ${docker-username} -p ${docker-password}"
+                sh "ssh ${DEV_SERVER_IP} sudo docker login -u $USERNAME -p $PASSWORD"
                 sh "ssh ${DEV_SERVER_IP} sudo docker push ${IMAGE_NAME}"
                 }
                 }
