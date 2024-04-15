@@ -3,8 +3,8 @@ pipeline {
     
     environment{
         IMAGE_NAME='gurudattaaws/box1:$BUILD_NUMBER'
-        DEV_SERVER_IP='ec2-user@3.108.228.203'
-        deploy_server='ec2-user@3.108.61.157'
+        DEV_SERVER_IP='ec2-user@65.0.89.121'
+        deploy_server='ec2-user@13.235.51.103'
        // APP_NAME='java-mvn-app'
     }
 
