@@ -73,7 +73,7 @@ pipeline {
                 sh "scp -o StrictHostKeyChecking=no server-script.sh ${deploy_server}:/home/ec2-user"
                 sh "ssh -o StrictHostKeyChecking=no ${deploy_server} bash /home/ec2-user/server-script.sh"
                 sh "ssh ${deploy_server} sudo docker login -u $USERNAME -p $PASSWORD"
-                sh "ssh ${deploy_server} sudo docker run -itd -p 8080:8080 ${IMAGE_NAME}"
+                sh "ssh ${deploy_server} sudo docker run -itd -p 8081:8080 ${IMAGE_NAME}"
                 }
                 }
                 
