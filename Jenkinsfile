@@ -1,5 +1,9 @@
 pipeline {
     agent none
+    tools{
+        jdk 'myjava'
+        maven 'mymaven'
+    }
     
     environment{
         IMAGE_NAME='gurudattaaws/box1:$BUILD_NUMBER'
