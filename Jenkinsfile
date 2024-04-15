@@ -3,8 +3,8 @@ pipeline {
     
     environment{
         IMAGE_NAME='gurudattaaws/box1:$BUILD_NUMBER'
-        DEV_SERVER_IP='ec2-user@3.108.228.203'
-        deploy_server='ec2-user@3.108.61.157'
+        DEV_SERVER_IP='ec2-user@13.201.6.67'
+        deploy_server='ec2-user@3.6.93.21'
        // APP_NAME='java-mvn-app'
     }
 
@@ -36,7 +36,7 @@ pipeline {
             steps {
                 
                 sshagent(['build-server-key']) {
-                withCredentials([usernamePassword(credentialsId: 'docker_credentials', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
+                withCredentials([usernamePassword(credentialsId: 'docker-hub', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')])  {
                 
 
                 //sh 'mvn compile'
@@ -61,7 +61,7 @@ pipeline {
             steps {
                 
                 sshagent(['build-server-key']) {
-                withCredentials([usernamePassword(credentialsId: 'docker_credentials', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
+                withCredentials([usernamePassword(credentialsId: 'docker-hub', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')])  {
                 
 
                 
